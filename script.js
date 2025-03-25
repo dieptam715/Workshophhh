@@ -18,6 +18,11 @@ function openTab(evt, tabName) {
     // Hiển thị tab được chọn
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
+
+    // Debug: Kiểm tra khi mở tab "Quét mã"
+    if (tabName === 'Scan') {
+        console.log("Mở tab Quét mã");
+    }
 }
 
 // Nút "Quay lại" - Đưa về giao diện ban đầu
@@ -54,8 +59,11 @@ document.getElementById('backButton').addEventListener('click', function() {
     document.getElementById('qrInfo').textContent = '';
     document.getElementById('qrTemp').textContent = '';
     document.getElementById('qrHumid').textContent = '';
-    document.getElementById('qrTempWarning').style.display = 'none';
+    document.getElementById('qrTempWarning').style.display = 'none'; // Ẩn cảnh báo
     document.getElementById('adjustButton').disabled = true;
+
+    // Debug: Kiểm tra khi nhấn "Quay lại"
+    console.log("Đã nhấn Quay lại, reset trạng thái");
 });
 
 // Tab "Sản phẩm"
@@ -68,7 +76,7 @@ document.querySelector('.tablinks[onclick="openTab(event, \'Products\')"]').addE
 function loadProducts() {
     const products = [
         { 
-            name: "Hộp giữ nhiệt Eco", 
+            name: "Hộp giữ nhiệt Eco (1 ngăn)", 
             material: "Thủy tinh: borosilicate, Inox: panel inox, Pin: Lithium, Nhựa: HDPE", 
             info: "Bảo quản thực phẩm, giữ 100% dinh dưỡng trong thời gian từ 3-7 ngày", 
             image: "anh1.jpg", 
@@ -76,7 +84,7 @@ function loadProducts() {
             price: "799,000" 
         },
         { 
-            name: "Hộp giữ nhiệt Pro", 
+            name: "Hộp giữ nhiệt Pro (2 ngăn)", 
             material: "Thủy tinh: borosilicate, Inox: panel inox, Pin: Lithium, Nhựa: HDPE", 
             info: "Bảo quản thực phẩm, giữ 100% dinh dưỡng trong thời gian từ 3-7 ngày", 
             image: "anh2.jpg", 
@@ -84,7 +92,7 @@ function loadProducts() {
             price: "1,399,000" 
         },
         { 
-            name: "Hộp giữ nhiệt Luxury", 
+            name: "Hộp giữ nhiệt Luxury (3 ngăn)", 
             material: "Thủy tinh: borosilicate, Inox: panel inox, Pin: Lithium, Nhựa: HDPE", 
             info: "Bảo quản thực phẩm, giữ 100% dinh dưỡng trong thời gian từ 3-7 ngày", 
             image: "anh3.jpg", 
@@ -135,7 +143,7 @@ document.getElementById('scanButton').addEventListener('click', function() {
     const qrCode = 'QR' + Math.random().toString(36).substr(2, 8).toUpperCase();
     const qrNames = ["Hộp Eco", "Hộp Pro", "Hộp Luxury"];
     const qrName = qrNames[Math.floor(Math.random() * qrNames.length)];
-    const qrInfos = ["Giữ nóng 12h, lạnh 24h", "Nhỏ gọn, tiện lợi", "Thiết kế sang trọng"];
+    const qrInfos = ["Giữ 100% dinh dưỡng trong thời gian từ 3-7 ngày"];
     const qrInfo = qrInfos[Math.floor(Math.random() * qrInfos.length)];
     const qrTemp = Math.floor(Math.random() * 101); // Nhiệt độ ngẫu nhiên từ 0-100
     const qrHumid = Math.floor(Math.random() * 101); // Độ ẩm ngẫu nhiên từ 0-100
@@ -149,8 +157,9 @@ document.getElementById('scanButton').addEventListener('click', function() {
     document.getElementById('qrInfo').textContent = '';
     document.getElementById('qrTemp').textContent = '';
     document.getElementById('qrHumid').textContent = '';
-    document.getElementById('qrTempWarning').classList.add('hidden'); // Ẩn cảnh báo trước
     document.getElementById('scanResult').classList.add('hidden');
+    const qrTempWarning = document.getElementById('qrTempWarning');
+    qrTempWarning.style.display = 'none'; // Ẩn cảnh báo trước
 
     // Cập nhật giá trị mới
     document.getElementById('qrCode').textContent = qrCode;
@@ -162,14 +171,16 @@ document.getElementById('scanButton').addEventListener('click', function() {
     document.getElementById('adjustButton').disabled = false;
 
     // Kiểm tra nhiệt độ và hiển thị cảnh báo (ngưỡng 20°C)
-    const qrTempWarning = document.getElementById('qrTempWarning');
     if (qrTemp > 20) {
         console.log("Nhiệt độ > 20°C, hiển thị cảnh báo");
-        qrTempWarning.classList.remove('hidden');
+        qrTempWarning.style.display = 'inline';
     } else {
         console.log("Nhiệt độ <= 20°C, ẩn cảnh báo");
-        qrTempWarning.classList.add('hidden');
+        qrTempWarning.style.display = 'none';
     }
+
+    // Debug: Kiểm tra trạng thái hiển thị của cảnh báo
+    console.log("Trạng thái hiển thị của qrTempWarning:", qrTempWarning.style.display);
 });
 
 // Nút "Điều chỉnh"
@@ -215,9 +226,12 @@ document.getElementById('saveAdjust').addEventListener('click', function() {
     const qrTempWarning = document.getElementById('qrTempWarning');
     if (parseInt(newTemp) > 20) {
         console.log("Nhiệt độ mới > 20°C, hiển thị cảnh báo");
-        qrTempWarning.classList.remove('hidden');
+        qrTempWarning.style.display = 'inline';
     } else {
         console.log("Nhiệt độ mới <= 20°C, ẩn cảnh báo");
-        qrTempWarning.classList.add('hidden');
+        qrTempWarning.style.display = 'none';
     }
+
+    // Debug: Kiểm tra trạng thái hiển thị của cảnh báo
+    console.log("Trạng thái hiển thị của qrTempWarning sau khi điều chỉnh:", qrTempWarning.style.display);
 });
