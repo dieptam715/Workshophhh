@@ -78,7 +78,7 @@ function loadProducts() {
         { 
             name: "Hộp giữ nhiệt Eco (1 ngăn)", 
             material: "Thủy tinh: borosilicate, Inox: panel inox, Pin: Lithium, Nhựa: HDPE", 
-            info: "Bảo quản thực phẩm, giữ 100% dinh dưỡng trong thời gian từ 3-7 ngày", 
+            info: "Bảo quản thực phẩm, giữ 100% dinh dưỡng trong thời gian từ 3-7 ngày",
             image: "anh1.jpg", 
             size: "S", 
             price: "799,000" 
@@ -86,13 +86,13 @@ function loadProducts() {
         { 
             name: "Hộp giữ nhiệt Pro (2 ngăn)", 
             material: "Thủy tinh: borosilicate, Inox: panel inox, Pin: Lithium, Nhựa: HDPE", 
-            info: "Bảo quản thực phẩm, giữ 100% dinh dưỡng trong thời gian từ 3-7 ngày", 
+            info: "Bảo quản thực phẩm, giữ 100% dinh dưỡng trong thời gian từ 3-7 ngày",
             image: "anh2.jpg", 
             size: "M", 
             price: "1,399,000" 
         },
         { 
-            name: "Hộp giữ nhiệt Luxury (3 ngăn)", 
+            name: "Hộp giữ nhiệt Luxury (4 ngăn)", 
             material: "Thủy tinh: borosilicate, Inox: panel inox, Pin: Lithium, Nhựa: HDPE", 
             info: "Bảo quản thực phẩm, giữ 100% dinh dưỡng trong thời gian từ 3-7 ngày", 
             image: "anh3.jpg", 
@@ -141,12 +141,12 @@ function loadProducts() {
 // Tab "Quét mã"
 document.getElementById('scanButton').addEventListener('click', function() {
     const qrCode = 'QR' + Math.random().toString(36).substr(2, 8).toUpperCase();
-    const qrNames = ["Hộp Eco", "Hộp Pro", "Hộp Luxury"];
+    const qrNames = ["Hộp Eco (1 ngăn)", "Hộp Pro (2 ngăn)", "Hộp Luxury (4 ngăn)"];
     const qrName = qrNames[Math.floor(Math.random() * qrNames.length)];
     const qrInfos = ["Giữ 100% dinh dưỡng trong thời gian từ 3-7 ngày"];
     const qrInfo = qrInfos[Math.floor(Math.random() * qrInfos.length)];
-    const qrTemp = Math.floor(Math.random() * 101); // Nhiệt độ ngẫu nhiên từ 0-100
-    const qrHumid = Math.floor(Math.random() * 101); // Độ ẩm ngẫu nhiên từ 0-100
+    const qrTemp = Math.floor(Math.random() * 111) - 10; // Nhiệt độ từ -10 đến 100
+    const qrHumid = Math.floor(Math.random() * 101); // Độ ẩm từ 0 đến 100
 
     // Debug: In giá trị nhiệt độ ra console
     console.log("Nhiệt độ (qrTemp):", qrTemp);
