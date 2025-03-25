@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Web Hộp Giữ Nhiệt</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Nút Quay lại -->
+        <button id="backButton" class="back-button">Quay lại</button>
+        
+        <h1>Trang Web Hộp Giữ Nhiệt</h1>
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'Products')">Sản phẩm</button>
+            <button class="tablinks" onclick="openTab(event, 'Scan')">Quét mã</button>
+        </div>
+
+        <!-- Thông điệp chào mừng (giao diện ban đầu) -->
+        <div id="welcomeMessage" class="welcome-message">
+            <h2>Chào mừng đến với Trang Web Hộp Giữ Nhiệt!</h2>
+            <p>Vui lòng chọn một tab để bắt đầu.</p>
+        </div>
+
+        <!-- Tab 1: Danh sách sản phẩm -->
+        <div id="Products" class="tabcontent">
+            <div id="productList" class="product-grid"></div>
+            <div id="productInfo" class="product-info hidden"></div>
+        </div>
+
+        <!-- Tab 2: Quét mã -->
+        <div id="Scan" class="tabcontent">
+            <h2>Quét mã QR</h2>
+            <button id="scanButton">Quét mã</button>
+            <div id="scanResult" class="hidden">
+                <p><strong>Mã sản phẩm:</strong> <span id="qrCode"></span></p>
+                <p><strong>Tên sản phẩm:</strong> <span id="qrName"></span></p>
+                <p><strong>Thông tin:</strong> <span id="qrInfo"></span></p>
+                <p><strong>Nhiệt độ hiện tại:</strong> <span id="qrTemp"></span>°C <span id="qrTempWarning" class="hidden warning">CÓ VẤN ĐỀ!</span></p>
+                <p><strong>Độ ẩm hiện tại:</strong> <span id="qrHumid"></span>%</p>
+                <button id="adjustButton" disabled>Điều chỉnh</button>
+            </div>
+        </div>
+
+        <!-- Màn hình điều chỉnh -->
+        <div id="adjustScreen" style="display: none;">
+            <h2>Điều chỉnh nhiệt độ và độ ẩm</h2>
+            <p><strong>Nhiệt độ hiện tại:</strong> <span id="currentTemp"></span>°C</p>
+            <label for="tempSlider">Điều chỉnh nhiệt độ:</label>
+            <input type="range" id="tempSlider" min="0" max="100">
+            <p><strong>Độ ẩm hiện tại:</strong> <span id="currentHumid"></span>%</p>
+            <label for="humidSlider">Điều chỉnh độ ẩm:</label>
+            <input type="range" id="humidSlider" min="0" max="100">
+            <button id="saveAdjust">Lưu</button>
+            <button id="closeAdjust">Đóng</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
